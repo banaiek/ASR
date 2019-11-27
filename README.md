@@ -13,6 +13,8 @@ The dataset contains parameters listed below:
 
 Trough alignment is done for each spike and in each decomposed frequency band zero crossing finds the length of removal for each frequency band average of first derivative of spikes.
 
+To download a Dataset_Example you can visit: http://accl.psy.vanderbilt.edu/resources/adaptive-spike-removal-code/
+
 Added Nov. 2019 #Primary spike trough alignment is added in case that “in.Spike_cell” (which is the indices of spikes aligned into their trough) contains spikes miss-aligned to their trough.
 
 Copyright (C) 2019, Kianoush Banaie Boroujeni.
