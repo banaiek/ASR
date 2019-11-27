@@ -15,4 +15,4 @@ Trough alignment is done for each spike and in each decomposed frequency band ze
 
 Added Nov. 2019 #Primary spike trough alignment is added in case that “in.Spike_cell” (which is the indices of spikes aligned into their trough) contains spikes miss-aligned to their trough.
 
-Copyright (C) 2018-2019, Kianoush Banaie Boroujeni.
+Copyright (C) 2019, Kianoush Banaie Boroujeni.
