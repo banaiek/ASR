@@ -25,7 +25,7 @@ Spike_cell=in.Spike_cell; %spike index (index refers to the spike time or spike 
       for vr=1:length(Spike_cell{st})
         
           [~,loc]=min(in.data_wb{Spike_trial(st)}(spike_wb(vr)-mai_b:spike_wb(vr)+mai_a));
-         in.Spike_cell{st}(1,vr)=spike_wb(vr)+loc-mai_b; 
+         in.Spike_cell{st}(vr,1)=spike_wb(vr)+loc-mai_b; 
       end
       
  
