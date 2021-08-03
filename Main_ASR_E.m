@@ -1,19 +1,30 @@
 %% Adaptive Spike Removal method
 %% this method is supposed to remove spike-related transient from Wideband data
-%The example data set should be load directly which is a struct named in
-%in.trial_time: shows the time series for time of each trial
-%in.Spike_trial is the trial number that spikes were recorded
-%in.Spike_cell is the corresponded to the trough of the spike (indicies of
-%spikes which their time is in another parameter named in.Spike_time)
+%The example data set should be load directly which is a struct named "in".
+
+
+%in.data_wb: is wide band exteracellularly recorded signal from one channel
+%of recording, each cell corresponds to 1 trial of wideband signal.
+
+%in.trial_time: shows the time series for time of each trial (corresponds
+%to the timeseries of wideband data)
+
+%in.Spike_cell: is a cell structure where each cell shows spikes in one trial which
+%has a column of values corresponding to the location of the spike troughs on
+%the wideband data timeseries in that trial (it is location indice not time which time
+%itself is in.Spike_time(unused here))).
+
+%in.Spike_trial: is the trial number corresponding to the cells in.Spike_cell.
+%(for example, if the first trial that we have spike values is trial 10 on
+%the in.data_wb then the in.Spike_trial(1)=10.
+
+
 %The length of the three varibles above is the number of spikes to be processed
 
-%in.data_wb is wide band exteracellularly recorded signal from one channel
-%of recording
-%in.trial_time: shows the time series for time of each trial
-%The length of the two varibles above is the number of trials that were recorded
+
+
 
 %This script finds the frequencies to decompose Wideband data
-%find zero crossing
 %using function BP_filter, ASR_Decomp_Func, & ASR_Reconst_Func to respectively filter
 %WB data for decomposition, decomposing spikes and find their
 %average of first derivative, & removing the average we found in ASR_Decomp_Func
@@ -24,9 +35,20 @@
 % of first derivative of spikes
 % The code needs the MATLAB signal processing toolbox for function (pspectrum).
 
+%Inputs:
+% hp contains parameters to be specified by user
+% in contains the entire data struct
+%Outputs
+% out.stLFP_ASR : Spike-triggered average after ASR
+% out.stLFP_raw : Spike-triggered average on raw wideband signal
+% out.data_wb   : widband signal with spikes removed
+% out.Orig_data : original data-structure
+
 %%----------
 %written by Kia. Banaie Boroujeni 2018
-% clc
+%adjusted on Aug. 2021
+
+clc
 close all
 clear all
 
