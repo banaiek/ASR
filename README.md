@@ -1,4 +1,9 @@
 # ASR
+Edit: Nov. 2019 #Primary spike trough alignment is added in case that “in.Spike_cell” (which is the indices of spikes aligned into their trough) contains spikes miss-aligned to their trough.
+
+Edit: Aug. 2021: Removing the constraint on the margin needed for removal. Still a sanity check for not having a spike indice on the first or the last few (e.g. 5) data points (which in practice and in a fine dataset should not) of a wideband data timeseries prevents any potentional problem.
+This Edit was very extensive and resulted in improvment and ease of using the method
+
 Adaptive Spike Removal from LFP
 
 Spikes introduce artificial phase lag to the LFP when they are recorded from the same channel. The scripts implement the adaptive spike removal method (ASR) that succeeds removing spike current leakage to the LFP across a broad range of frequencies. This study is published in J. Neuroscience Methods https://doi.org/10.1016/j.jneumeth.2019.108485
@@ -18,10 +23,7 @@ The dataset contains an structure of cells and doubles listed below:
 
 %The main script finds frequencies to decompose Wideband data and finds zero crossing. %Using function BP_filter, ASR_Decomp_Func, & ASR_Reconst_Func to respectively filter WB data for decomposition, decomposing spikes and find average of their first derivative, & removing the average we found in ASR_Decomp_Func from each single spikes in ASR_Reconst_Func.
 
-Edit: Nov. 2019 #Primary spike trough alignment is added in case that “in.Spike_cell” (which is the indices of spikes aligned into their trough) contains spikes miss-aligned to their trough.
 
-Edit: Aug. 2021: Removing the constraint on the margin needed for removal. Still a sanity check for not having a spike indice on the first or the last few (e.g. 5) data points (which in practice and in a fine dataset should not) of a wideband data timeseries prevents any potentional problem.
-This Edit was very extensive and resulted in improvment and ease of using the method
 
 
 
