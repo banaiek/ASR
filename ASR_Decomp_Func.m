@@ -15,21 +15,31 @@
 %fbw : frequency band 
 %%----------
 %written by Kia. Banaie Boroujeni 2018
+%adjusted on Aug. 2021
 
-function [mean_De_f,n]=ASR_Decomp_Func(De_f,St,a1,b1,n,mean_De,fbw,Fs)
+function [mean_De_f]=ASR_Decomp_Func(De_f,St,a1,b1,fbw,Fs)
 %% trough alignment
- fbw=round(fbw/2)+1;
- [~,l_m]=min(De_f(St-fbw:St+fbw));
- l_m=(fbw+1)-l_m;
+ mean_De_f = nan(1,a1+b1+1);
+ fbw2=round(fbw/2)+1;
+ L=length(De_f);
+ l1=min(fbw2,St-1);
+ l2=min(fbw2,L-St);
+ [~,l_m]=min(De_f(St-l1:St+l2));
+ 
+ St = St-l1+l_m-1;
+ 
+ fl1 = min(St-2,b1);
+ fl2 = min(a1,L-St);
+ 
+ ml1 = b1+1-fl1;
+ ml2 = b1+fl2+1;
+    
 
 %differentiation 
- d_De_f=(diff(De_f(St-a1-l_m:St+b1-l_m+1))/(1/Fs));
+ d_De_f = (diff(De_f(St-fl1-1:St+fl2))/(1/Fs));
 
-if ~isnan(d_De_f)
- mean_De_f=mean_De+d_De_f; %sum of  decomposed spikes
-n=n+1; %counter
-else    
- mean_De_f=mean_De;   
-end
+
+ mean_De_f(1,ml1:ml2) = d_De_f; %sum of  decomposed spikes
+
 
 end
