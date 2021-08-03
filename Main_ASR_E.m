@@ -3,18 +3,18 @@
 %The example data set should be load directly which is a struct named "in".
 
 
-%in.data_wb: is wide band exteracellularly recorded signal from one channel
+%in.data_wb (cell): is wide band exteracellularly recorded signal from one channel
 %of recording, each cell corresponds to 1 trial of wideband signal.
 
-%in.trial_time: shows the time series for time of each trial (corresponds
+%in.trial_time (cell): shows the time series for time of each trial (corresponds
 %to the timeseries of wideband data)
 
-%in.Spike_cell: is a cell structure where each cell shows spikes in one trial which
+%in.Spike_cell (cell): is a cell structure where each cell shows spikes in one trial which
 %has a column of values corresponding to the location of the spike troughs on
 %the wideband data timeseries in that trial (it is location indice not time which time
 %itself is in.Spike_time(unused here))).
 
-%in.Spike_trial: is the trial number corresponding to the cells in.Spike_cell.
+%in.Spike_trial (double): is the trial number corresponding to the cells in.Spike_cell.
 %(for example, if the first trial that we have spike values is trial 10 on
 %the in.data_wb then the in.Spike_trial(1)=10.
 
