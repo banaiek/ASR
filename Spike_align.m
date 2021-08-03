@@ -8,7 +8,7 @@
 % in.Spike_cell.
 
 %written by Kia. Banaie Boroujeni (Nov. 2019)
-
+%adjusted on Aug. 2021
 
 function [hp,in]=Spike_align(hp,in)
 
@@ -22,10 +22,13 @@ Spike_cell=in.Spike_cell; %spike index (index refers to the spike time or spike 
      
     for st=1:length(Spike_trial)
       spike_wb=Spike_cell{st}; %spike indices of each trial
+      y=in.data_wb{Spike_trial(st)};
+      L=length(y);
       for vr=1:length(Spike_cell{st})
-        
-          [~,loc]=min(in.data_wb{Spike_trial(st)}(spike_wb(vr)-mai_b:spike_wb(vr)+mai_a));
-         in.Spike_cell{st}(vr,1)=spike_wb(vr)+loc-mai_b; 
+          sp1 = min(spike_wb(vr)-1,mai_b); % borders around spikes
+          sp2 = min(mai_a,L-spike_wb(vr)); 
+          [~,loc]=min(in.data_wb{Spike_trial(st)}(spike_wb(vr)-sp1:spike_wb(vr)+sp2));
+         in.Spike_cell{st}(vr,1)=spike_wb(vr)+loc-sp1-1; 
       end
       
  
